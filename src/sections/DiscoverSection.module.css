@@ -1,0 +1,288 @@
+.field {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(70% 50% at 20% 10%, rgba(30, 138, 85, 0.24), transparent 65%),
+    linear-gradient(180deg, transparent, rgba(20, 36, 25, 0.75) 30%, transparent);
+  pointer-events: none;
+}
+
+.top {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+  gap: clamp(24px, 5vw, 64px);
+  align-items: end;
+  margin-bottom: clamp(44px, 6vw, 72px);
+}
+
+.title {
+  font-size: clamp(2.6rem, 7vw, 5rem);
+  line-height: 0.95;
+}
+
+.titleLine {
+  display: block;
+  color: var(--green);
+}
+
+/* Demo -------------------------------------------------------------- */
+.demo {
+  position: relative;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-xl);
+  background: linear-gradient(165deg, rgba(27, 49, 36, 0.85), rgba(15, 27, 20, 0.9));
+  padding: clamp(22px, 3.4vw, 40px);
+  margin-bottom: clamp(48px, 6vw, 80px);
+}
+
+.demoHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: clamp(20px, 3vw, 32px);
+}
+
+.demoBody {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: clamp(26px, 4vw, 56px);
+  align-items: center;
+}
+
+.deckArea {
+  position: relative;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card,
+.behind {
+  position: absolute;
+  width: 250px;
+  border-radius: var(--r-md);
+  background: #101a14;
+  border: 1px solid var(--line-strong);
+  padding: 14px;
+  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.95);
+}
+
+.behind {
+  transform: translateY(calc(var(--k) * 10px)) scale(calc(1 - var(--k) * 0.045));
+  opacity: 0.5;
+  padding: 14px;
+}
+
+.card {
+  z-index: 3;
+  cursor: grab;
+  touch-action: pan-y;
+  transition: transform 260ms var(--ease-out);
+  user-select: none;
+}
+
+.card:active { cursor: grabbing; }
+
+@media (prefers-reduced-motion: reduce) {
+  .card { transition: none; }
+}
+
+.cardArt { border-radius: 10px; }
+
+.cardText { padding: 14px 4px 2px; }
+
+.cardTitle {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.cardArtist { color: var(--mint-2); font-size: 0.92rem; }
+
+.cardFormat {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--mint-3);
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  padding: 3px 9px;
+}
+
+.stamp {
+  position: absolute;
+  top: 22px;
+  z-index: 4;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
+  padding: 5px 14px;
+  border-radius: 999px;
+  border: 2px solid currentColor;
+  pointer-events: none;
+}
+
+.stampLike { right: 20px; color: var(--green); transform: rotate(9deg); }
+.stampPass { left: 20px; color: #ff8fa3; transform: rotate(-9deg); }
+
+/* Result ------------------------------------------------------------ */
+.result {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  animation: pop 460ms var(--ease-out) both;
+}
+
+.result:focus-visible { box-shadow: var(--focus); border-radius: var(--r-md); }
+
+@keyframes pop {
+  from { opacity: 0; transform: scale(0.94); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .result { animation: none; }
+}
+
+.resultLabel {
+  color: var(--green);
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-bottom: 14px;
+}
+
+.resultArt { width: 168px; margin-bottom: 18px; }
+
+.resultTitle {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+
+.resultMeta { color: var(--mint-3); font-size: 0.86rem; margin-top: 6px; }
+
+.resultWhy {
+  color: var(--mint-2);
+  font-size: 0.95rem;
+  max-width: 34ch;
+  margin-top: 14px;
+  line-height: 1.5;
+}
+
+/* Controls ---------------------------------------------------------- */
+.controls { min-width: 0; }
+
+.progress { font-weight: 600; margin-bottom: 10px; }
+
+.bar {
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(215, 240, 225, 0.14);
+  overflow: hidden;
+  margin-bottom: 22px;
+}
+
+.bar span {
+  display: block;
+  height: 100%;
+  background: var(--green);
+  transition: width 300ms var(--ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar span { transition: none; }
+}
+
+.buttons { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; }
+
+.help, .disclaimer {
+  color: var(--mint-3);
+  font-size: 0.88rem;
+  max-width: 44ch;
+  line-height: 1.5;
+}
+
+.disclaimer { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 16px; }
+
+/* Genres ------------------------------------------------------------ */
+.genres { position: relative; }
+
+.genresHead { margin-bottom: 18px; }
+
+.genreList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 22px;
+}
+
+.genreList li {
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  padding: 8px 16px;
+  color: var(--mint-2);
+  font-size: 0.92rem;
+}
+
+.shfl {
+  color: var(--mint-3);
+  font-size: 0.9rem;
+  max-width: 70ch;
+  line-height: 1.55;
+}
+
+.shfl a { color: var(--mint); }
+
+@media (max-width: 899px) {
+  .top { grid-template-columns: 1fr; align-items: start; }
+  .demoBody { grid-template-columns: 1fr; }
+  .deckArea { height: 372px; order: -1; }
+}
+
+@media (max-width: 380px) {
+  .card, .behind { width: 218px; }
+}
+
+/* Outgoing card ------------------------------------------------------ */
+.ghost {
+  position: absolute;
+  width: 250px;
+  border-radius: var(--r-md);
+  background: #101a14;
+  border: 1px solid var(--line-strong);
+  padding: 14px;
+  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.95);
+  z-index: 4;
+  pointer-events: none;
+}
+
+.ghostLike { animation: flyRight 320ms var(--ease-out) forwards; }
+.ghostPass { animation: flyLeft 320ms var(--ease-out) forwards; }
+
+@keyframes flyRight {
+  to { transform: translateX(440px) rotate(17deg); opacity: 0; }
+}
+
+@keyframes flyLeft {
+  to { transform: translateX(-440px) rotate(-17deg); opacity: 0; }
+}
+
+@media (max-width: 380px) {
+  .ghost { width: 218px; }
+}

@@ -1,0 +1,253 @@
+/* Recreations of Harmony's screens, following the app's editorial design
+   system: one colour field per section (amber/Library, lavender/Now Playing,
+   green/Discover, blue/Downloads) with near-black ink type on top.
+   These are website previews, not the running app. */
+
+.screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 2.6em 1.1em 0;
+  font-family: var(--font-body);
+  overflow: hidden;
+}
+
+.amber { background: #f3a311; color: #1a1403; }
+.lavender { background: #b4a4dd; color: #1b1430; }
+.green { background: #7fd6a8; color: #052a15; }
+.blue { background: #8fc0e6; color: #06263d; }
+
+.head {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.7em;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 0.15em;
+}
+
+.sub {
+  font-size: 0.78em;
+  opacity: 0.72;
+  margin-bottom: 1.1em;
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.62em;
+  flex: 1;
+  min-height: 0;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 0.65em;
+}
+
+.rowArt {
+  width: 2.7em;
+  flex: none;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.rowText { min-width: 0; flex: 1; }
+
+.rowTitle {
+  font-weight: 600;
+  font-size: 0.88em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rowMeta {
+  font-size: 0.72em;
+  opacity: 0.68;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.badge {
+  flex: none;
+  font-size: 0.62em;
+  font-weight: 700;
+  padding: 0.22em 0.5em;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  opacity: 0.75;
+  letter-spacing: 0.01em;
+}
+
+/* nav bar at the bottom of every screen */
+.nav {
+  flex: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.7em -0.3em 0.9em;
+  padding: 0.45em 0.55em;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.14);
+  font-size: 0.68em;
+  font-weight: 600;
+}
+
+.navItem { opacity: 0.55; padding: 0.15em 0.5em; }
+
+.navItemOn {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 999px;
+  padding: 0.15em 0.7em;
+}
+
+/* Now Playing ------------------------------------------------------- */
+.npArt {
+  width: 68%;
+  margin: 0.4em auto 1.1em;
+  position: relative;
+}
+
+.npTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15em;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.npArtist { font-size: 0.8em; opacity: 0.7; margin-bottom: 0.9em; }
+
+.wave {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 2.1em;
+  margin-bottom: 0.35em;
+}
+
+.wave i {
+  flex: 1;
+  background: currentColor;
+  border-radius: 1px;
+  opacity: 0.32;
+}
+
+.wave i[data-played='1'] { opacity: 0.95; }
+
+.times {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.68em;
+  opacity: 0.7;
+  margin-bottom: 0.7em;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.3em;
+  margin-bottom: 0.6em;
+}
+
+.ctlPlay {
+  width: 2.6em;
+  height: 2.6em;
+  border-radius: 50%;
+  background: currentColor;
+  display: grid;
+  place-items: center;
+}
+
+.formatRow {
+  display: flex;
+  justify-content: center;
+  gap: 0.4em;
+  font-size: 0.62em;
+  font-weight: 700;
+}
+
+.chip {
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  padding: 0.2em 0.55em;
+  opacity: 0.75;
+}
+
+/* Discover ---------------------------------------------------------- */
+.deck {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  margin-bottom: 0.5em;
+}
+
+.deckCard {
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  top: 2%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 14px 30px -18px rgba(0, 0, 0, 0.7);
+  padding: 0.5em;
+}
+
+.deckCard:nth-child(1) { transform: rotate(-6deg) translateY(4%); opacity: 0.5; }
+.deckCard:nth-child(2) { transform: rotate(3deg) translateY(2%); opacity: 0.75; }
+.deckCard:nth-child(3) { transform: none; }
+
+.deckLabel {
+  font-weight: 600;
+  font-size: 0.8em;
+  margin-top: 0.45em;
+}
+
+.deckMeta { font-size: 0.68em; opacity: 0.7; }
+
+.swipeHint {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.66em;
+  font-weight: 700;
+  opacity: 0.65;
+  margin-bottom: 0.3em;
+}
+
+/* Downloads --------------------------------------------------------- */
+.dlRow {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  font-size: 0.8em;
+}
+
+.dlBar {
+  flex: 1;
+  height: 0.32em;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+}
+
+.dlBar span { display: block; height: 100%; background: currentColor; }
+
+.dlPct { font-size: 0.7em; font-variant-numeric: tabular-nums; opacity: 0.75; width: 2.6em; text-align: right; }
+
+.simTag {
+  align-self: flex-start;
+  font-size: 0.6em;
+  font-weight: 700;
+  border: 1px dashed currentColor;
+  border-radius: 999px;
+  padding: 0.18em 0.5em;
+  opacity: 0.7;
+  margin-bottom: 0.6em;
+}

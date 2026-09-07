@@ -1,0 +1,189 @@
+.head { margin-bottom: clamp(40px, 6vw, 66px); max-width: 62ch; }
+.head h2 { margin-bottom: 18px; }
+
+.body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: start;
+  margin-bottom: clamp(48px, 6vw, 84px);
+}
+
+.stepList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: step;
+}
+
+.stepList li {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 18px;
+  padding: 22px 0;
+  border-top: 1px solid var(--line);
+}
+
+.stepList li:first-child { border-top: 0; padding-top: 0; }
+
+.stepNum {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--green);
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  flex: none;
+}
+
+.stepTitle { font-size: 1.12rem; margin-bottom: 7px; }
+
+.stepText { color: var(--mint-2); font-size: 0.98rem; line-height: 1.55; max-width: 46ch; }
+
+/* Track picker ------------------------------------------------------ */
+.picker {
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-lg);
+  background: linear-gradient(170deg, rgba(27, 49, 36, 0.7), rgba(15, 27, 20, 0.9));
+  padding: clamp(20px, 2.6vw, 28px);
+  position: sticky;
+  top: 96px;
+}
+
+.pickerHead {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 8px;
+}
+
+.pickerArt { width: 62px; flex: none; }
+
+.pickerTitle {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.pickerMeta { color: var(--mint-3); font-size: 0.88rem; }
+
+.fieldset { border: 0; margin: 0; padding: 0; }
+
+.legend { padding: 0; margin-bottom: 4px; font-size: 0.85rem; color: var(--mint-3); }
+
+.trackList { list-style: none; margin: 0; padding: 0; }
+
+.track {
+  display: grid;
+  grid-template-columns: 22px 18px minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 10px;
+  margin: 0 -10px;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  color: var(--mint-3);
+  transition: background-color 160ms var(--ease-out), color 160ms var(--ease-out);
+  min-height: 48px;
+}
+
+.track:hover { background: rgba(215, 240, 225, 0.05); }
+
+.trackOn { color: var(--mint); }
+
+.checkbox {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.tick {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 1.5px solid var(--line-strong);
+  display: grid;
+  place-items: center;
+  color: transparent;
+  transition: background-color 160ms var(--ease-out), border-color 160ms var(--ease-out);
+}
+
+.trackOn .tick {
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--green-ink);
+}
+
+.checkbox:focus-visible + .tick { box-shadow: var(--focus); }
+
+.trackNum { font-size: 0.82rem; font-variant-numeric: tabular-nums; opacity: 0.7; }
+
+.trackTitle {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.96rem;
+}
+
+.trackLen, .trackSize {
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.65;
+}
+
+.pickerFoot {
+  border-top: 1px solid var(--line);
+  margin-top: 14px;
+  padding-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.total { font-weight: 600; font-size: 0.94rem; }
+
+/* Sources ----------------------------------------------------------- */
+.sources {
+  border-top: 1px solid var(--line);
+  padding-top: clamp(30px, 4vw, 44px);
+}
+
+.sourcesHead { margin-bottom: 22px; font-size: 1.2rem; }
+
+.sourceGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: clamp(22px, 4vw, 56px);
+}
+
+.sourceName {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.02rem;
+  margin-bottom: 8px;
+}
+
+.sourceName a { color: var(--green); }
+
+.sourceText { color: var(--mint-3); font-size: 0.93rem; line-height: 1.6; max-width: 52ch; }
+
+@media (max-width: 899px) {
+  .body { grid-template-columns: 1fr; }
+  .picker { position: static; }
+}
+
+@media (max-width: 420px) {
+  .track { grid-template-columns: 22px minmax(0, 1fr) auto; gap: 10px; }
+  .trackNum, .trackSize { display: none; }
+}
