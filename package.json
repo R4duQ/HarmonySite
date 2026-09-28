@@ -1,0 +1,8 @@
+{
+  "name": "harmony-site",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "rm -rf dist && mkdir -p dist && cp -r index.html assets _headers dist/"
+  }
+}

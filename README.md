@@ -15,14 +15,17 @@ python3 -m http.server 8000   # http://localhost:8000
 
 Build settings:
 
-- Framework preset: **None**
-- Build command: *(leave empty)*
-- Build output directory: `/`
+- Build command: `npm run build`
+- Build output directory: `dist`
+
+`npm run build` has no dependencies; it just copies `index.html`, `assets/` and
+`_headers` into `dist/`.
 
 Or from your machine:
 
 ```sh
-npx wrangler pages deploy . --project-name=harmonymusicapp
+npm run build
+npx wrangler pages deploy dist --project-name=harmonymusicapp
 ```
 
 `_headers` sets long cache lifetimes for `/assets/*` and a couple of security headers;
